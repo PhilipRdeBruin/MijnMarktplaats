@@ -1,0 +1,102 @@
+
+/*  Algemeen  */
+
+.blank {
+	color	: #eee;
+}
+
+.grey {
+	color	: #ccc;
+}
+
+
+/* Style the nav elements */
+
+#ahome {
+	padding	: 2px 20px 2px 20px;
+}
+
+#ainlog {
+	padding	: 2px 30px 2px 30px;
+}
+
+#aplaatsen {
+	padding	: 2px 10px 2px 10px;
+}
+
+#aprofiel {
+	/* */
+}
+
+#auitlog {
+	padding	: 2px 28px 2px 28px;
+}
+
+nav a {
+	margin-left		: 15%;
+    padding			: 2px 25px 2px 25px;
+    font-size		: 12px;
+    text-decoration	: none;
+	color			: #036;
+    background		: -moz-linear-gradient(#eee, #bbb);
+    background		: -webkit-linear-gradient(#eee, #bbb);
+    background		: -ms-linear-gradient(#eee, #bbb);
+    background		: -o-linear-gradient(#eee, #bbb);
+	border			: 1px #036 solid;
+    border-radius	: 5px;
+}
+
+nav a:hover {
+	background	: -moz-linear-gradient(#bbb, #eee);
+	background	: -webkit-linear-gradient(#bbb, #eee);
+	background	: -ms-linear-gradient(#bbb, #eee);
+	background	: -o-linear-gradient(#bbb, #eee);
+}
+
+
+/* Style the footer elements */
+#adres {
+	padding-top		: 0.2%;
+	padding-bottom	: 0.2%;
+}
+
+#adres, #contact, #email, #telefoon {
+	float			: left;
+	width			: 24.9%;
+	padding-left	: 5%;
+}
+
+#contact {
+	padding-top	: 0.35%;
+}
+
+#contact td {
+	color	: #777;
+}
+
+#contactknop {
+	width			: 80%;
+	padding			: 1%;
+	color			: white;
+	background		: #777;
+	border			: 1px solid #777;
+	text-decoration	: underline;
+	cursor			: pointer;
+	font-size		: 16px;
+}
+
+#contactknop:hover, #email a:hover {
+	color	: #900;
+}
+
+#contactknop:visited, #email a:visited {
+	color	: #c6f;
+}
+
+#email a:link {
+	color	: white;
+}
+
+#email, #telefoon {
+	padding-top	: 1%;
+}

@@ -1,0 +1,14 @@
+
+#advertentieknop {
+    float: right;
+}
+
+#ad_naam, #rubriek {
+    min-width       : 320px;
+}
+
+#art_prijs {
+    width           : 100px;
+    padding-right   : 5px;
+    text-align      : right;
+}

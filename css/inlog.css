@@ -1,0 +1,18 @@
+
+.regform {
+    min-width       : 300px;
+}
+
+.regformlabel {
+    min-width       : 175px;
+}
+
+#registratieform {
+    margin-left     : auto;
+    width           : 85%;
+}
+
+#aanmaken_acct:hover {
+	background		: #ffdd3b;
+	border-radius	: 5px;
+}
