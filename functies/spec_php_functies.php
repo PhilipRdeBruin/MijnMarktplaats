@@ -38,6 +38,12 @@
         }
     }
 
+    function schrijf_advertentiebestand($ix, $gebruikersnaam, $ad_naam, $rubriek, $tijd ) {
+        $filenaam = "bericht_" . $ix . ".txt";
+        $inhoud = $tijd . "\n" . $gebruikersnaam . "\n" . $ad_naam . "\n" . $rubriek . "\n" . $advertentie;
+        schrijfbestand ("w", $filenaam, $inhoud, "advertenties");
+    }
+
     function unset_plaats_ad_sessievariabelen() {
         $advelden = array('advertentieknop',
                           'ad_naam', 'advertentie_id', 'rubriekid',

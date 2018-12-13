@@ -67,6 +67,19 @@
         return $pad;
     }
 
+    function fetch_verhaal($id, $best_prefix, $pad = "") {
+        $ix = str_pad($id, 4, '0', STR_PAD_LEFT);
+        $bestand = $best_prefix . "_" . $ix . ".txt";
+        $y_arr = leesbestand($bestand, $pad);
+
+        $y_tekst = "";
+        for ($i=4; $i<$y_arr[1]; $i++) {
+            $tekst  = $tekst . $y_arr[0][$i] . "<br/>";
+        }
+
+        return $tekst;
+    }
+
     function leesbestand ($bestand, $submap="") {
         $pad = detpad($bestand, $submap);
 

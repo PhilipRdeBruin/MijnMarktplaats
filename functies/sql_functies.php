@@ -1,6 +1,38 @@
 
 <?php
 
+    function fetch_advertenties() {
+        $conn = dbconnect("sqli");
+        $sql = "SELECT * FROM advertenties a
+            INNER JOIN gebruikers g
+            ON a.verkoper_id = g.gebr_id
+            INNER JOIN rubrieken r
+            ON a.rubriek_id = r.rubr_id
+            ORDER BY a.ad_id DESC;";
+        $result = $conn->query($sql);
+        dbdisconnect("sqli", $conn);
+
+        return $result;
+    }
+
+    function get_nieuw_advertentie_id ($advertentie_naam) {
+        $sql = "SELECT ad_id FROM advertenties WHERE ad_naam = '$advertentie_naam' AND ad_geplaatst = '$tijd';";
+        $result = $conn->query($sql);
+        if($row = $result->fetch_assoc()) { $ad_id = $row['ad_id']; }
+        $conn = dbconnect ("sqli");
+
+        return $ad_id;
+    }
+
+    function get_nieuw_gebruikerid ($gebruikersnaam) {
+        $sql = "SELECT gebr_id FROM gebruikers WHERE gebruikersnaam = '$gebruikersnaam';";
+        $result = $conn->query($sql);
+        if($row = $result->fetch_assoc()) { $gebruikerid = $row['gebruikerid']; }
+        $conn = dbconnect ("sqli");
+
+        return $gebruikerid;
+    }
+
     function insert_gebruikers($kolommen, $waarden) {
         $conn = dbconnect("sqli");
         $sql = "INSERT INTO gebruikers ($kolommen) VALUES ($waarden);";

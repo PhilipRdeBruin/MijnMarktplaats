@@ -3,6 +3,8 @@
     if (issessie('advertentieknop') != "") {
         if (issessie('rubriekid') != "" && issessie('rubriekid') != "leeg" && issessie('advertentie') != "") {
             plaats_advertentie();
+            if ($advertentieknop == "plaats advertentie") { $ad_id = get_nieuw_advertentie_id(); }
+            schrijf_advertentiebestand();
             unset_plaats_ad_sessievariabelen();
             header ("Location: http://localhost/mijnprojecten/mijnmarktplaats/index.php");
         } else {
