@@ -17,7 +17,7 @@
             $nav[0][0] = 'auitlog'; $nav[1][0] = 'uitloggen.php'; $nav[2][0] = 'Uitloggen';
             $nav[0][1] = 'aplaatsen'; $nav[1][1] = 'plaatsen.php';
             $nav[2][1] = 'Advertentie<span class="grey">_</span>plaatsen';
-            $nav[0][2] = 'aprofiel'; $nav[1][2] = 'profiel.php';
+            $nav[0][2] = 'aprofiel'; $nav[1][2] = 'setup.php?mijnprofiel=' . $gebruikerid;
             $nav[2][2] = 'Mijn<span class="grey">_</span>profiel';
         }
         break;
@@ -29,7 +29,7 @@
         $nnav = 3;
         $nav[0][0] = 'ahome'; $nav[1][0] = 'index.php'; $nav[2][0] = 'Hoofdpagina';
         $nav[0][1] = 'auitlog'; $nav[1][1] = 'uitloggen.php'; $nav[2][1] = 'Uitloggen';
-        $nav[0][2] = 'aprofiel'; $nav[1][2] = 'profiel.php';
+        $nav[0][2] = 'aprofiel'; $nav[1][2] = 'setup.php?mijnprofiel=' . $gebruikerid;
         $nav[2][2] = 'Mijn<span class="grey">_</span>profiel';
         break;
     case 'profiel':

@@ -1,11 +1,19 @@
 
 <?php
+//	$_SESSION['registerknop'] = "";
 
+	$gebruikerid = issessie('gebruikerid');
 	$gebruikersnaam = issessie('gebruikersnaam');
+//	phpAlert ("gebruiker: id, naam = $gebruikerid, $gebruikersnaam");
 
 	switch ($site) {
 	case 'index':
 	    $profiel = 0;
+		if (issessie('mijnprofiel') != "") {
+			$profiel = $_SESSION['mijnprofiel'];
+			echo "<script>write_profiel_to_title('$gebruikersnaam');</script>";
+			unset ($_SESSION['mijnprofiel']);
+		}
 		break;
 	case 'inlog':
 		$gebruikersnaam = "";

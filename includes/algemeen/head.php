@@ -23,6 +23,7 @@
 
 	<link rel = "stylesheet" href = "css/flexbox.css">
 	<link rel = "stylesheet" href = "css/marktpl.css">
+	<link rel = "stylesheet" href = "css/index.css">
 	<link rel = "stylesheet" href = "css/inlog.css">
 	<link rel = "stylesheet" href = "css/plaatsen.css">
 <!--<link rel = "stylesheet" href = "css/captcha.css">-->

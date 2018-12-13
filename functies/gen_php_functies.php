@@ -41,9 +41,10 @@
         echo '<script type="text/javascript">alert("' . $msg . '"); ' . $redirect . '</script>';
     }
 
-    function phpConfirm ($inpstr, $id, $redirectUrl="") {
-        $redirectja = "window.location.href = '" . $redirectUrl . "?antw=ja&id=" . $id . "'";
-        $redirectnee = "window.location.href = '" . $redirectUrl . "?antw=nee&id=" . $id . "'";
+    function phpConfirm ($tp, $inpstr, $id, $redirectUrl="") {
+        $idstr = ($id != "") ? "&id=$id" : "";
+        $redirectja = "window.location.href = '" . $redirectUrl . "?" . $tp . "antw=ja" . $idstr . "'";
+        $redirectnee = "window.location.href = '" . $redirectUrl . "?" . $tp . "antw=nee" . $idstr . "'";
         echo '<script type="text/javascript">';
         echo 'antw = confirm ("' . $inpstr . '"); ';
         echo "if (antw == true) { $redirectja; } else { $redirectnee; }";
@@ -73,18 +74,23 @@
         $y_arr = leesbestand($bestand, $pad);
 
         $y_tekst = "";
-        for ($i=4; $i<$y_arr[1]; $i++) {
-            $tekst  = $tekst . $y_arr[0][$i] . "<br/>";
+        if ($y_arr[0] != "") {
+            for ($i=4; $i<$y_arr[1]; $i++) {
+                $y_tekst  = $y_tekst . $y_arr[0][$i] . "<br/>";
+            }
         }
 
-        return $tekst;
+        return $y_tekst;
     }
 
     function leesbestand ($bestand, $submap="") {
         $pad = detpad($bestand, $submap);
 
-        $res[0] = file($pad . $bestand);
-        $res[1] = count($res[0]);
+        $res[0] = "";
+        if (is_file($pad . $bestand)) {
+            $res[0] = file($pad . $bestand);
+            $res[1] = count($res[0]);
+        }
         return $res;
     }
 

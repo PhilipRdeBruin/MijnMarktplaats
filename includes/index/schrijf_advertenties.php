@@ -1,87 +1,71 @@
 
-    <div class="hoofdsectie">
-        <div class="overzichtheader">
-            <table id="overzichtstabelheader">
-                <tr>
-                    <th width="15%">Categorie</th><th width="5%"></th>
-                    <th width="15%">Auteur</th><th width="5%"></th>
-                    <th width="30.5%">Advertentie</th><th width="5%"></th>
-                    <th width="22.5%">Geplaatst</th><th width="5%"></th>
-                </tr>
-            </table>
-        </div>
-        <div class="overzicht">
-            <table id="overzichtstabel">
+    <div class="advertenties">
 <?php
-            $result = fetch_advertenties();
+    foreach ($result as $row) {
+        $tv = ($row['tussenvoegsel'] != "") ? " " . $row['tussenvoegsel'] : "";
+        $naam = $row['voornaam'] . $tv . " " . $row['achternaam'];
+        $vanaf = ($row['prijs_vanaf'] == 1) ? "(vanaf)" : "";
+        $geplaatst = date_format(date_create($row['ad_geplaatst']), "d-m-Y H:i:s");
+        $ad_tekst = fetch_verhaal($row['ad_id'], "advertentie", "advertenties");
+        if ($ad_tekst == "") { $ad_tekst = $row['ad_omschrijving']; }
 
-            $opm = 0;
-            foreach ($result as $row) {
-                $opm = ($opm == 1) ? 2 : 1;
-                $tv = ($row['tussenvoegsel'] != "") ? " " . $row['tussenvoegsel'] : "";
-                $naam = $row['voornaam'] . $tv . " " . $row['achternaam'];
-                $geplaatst = date_format(date_create($row["ad_geplaatst"]), "d-m-Y H:i:s");
 ?>
-                <tr id="regel<?php echo $opm; ?>">
-                    <td width="20%"><?php echo $row['rubriek_naam']; ?></td>
-                    <td width="20%"><?php echo $naam; ?></td>
-                    <td width="35%"><?php echo $row['ad_naam']; ?></td>
-                    <td width="25%"><?php echo $geplaatst; ?></td>
-                </tr>
-<?php
-            }
-?>
-            </table>
-        </div>
-        <br/><hr/>
+        <table id="advertentietabel">
+            <tr id="btblrij1">
+                <td class="btblcel1" id="auteurnaam" <?php echo $row['gebr_id']; ?> width="25%">
+                    <?php echo $naam ?>
+                </td>
+                <td class="btblrij1" width="75%">
+                    <?php echo $row['ad_naam'] ?>
+                </td>
+            </tr>
+            <tr>
+                <td id="btblcelx">
+                    <i>rubriek:</i> <?php echo $row['rubriek_naam'] ?>
+                </td>
+                <td id="btblcelb">
+                    <?php echo $ad_tekst ?>
+                </td>
+            </tr>
+            <tr>
+                <td id="btblrijz" colspan="2">
+                    <i>geplaatst: <?php echo $geplaatst ?></i>
+                </td>
+            </tr>
+        </table>
 
-        <div class="advertenties">
+        <table id="biedingentabel">
+            <tr id="btblrij1">
+                <td>prijs: <?php echo $vanaf; ?></td>
+                <td>$  <?php echo $row['artikel_prijs']; ?></td>
+            </tr>
+            <tr>
+                <td colspan="2">Biedingen:</td>
+            </tr>
+
+            <?php schrijf_biedingen($row['ad_id']) ?>
+
+            <tr>
+                <td>
 <?php
-        foreach ($result as $row) {
-            $tv = ($row['tussenvoegsel'] != "") ? " " . $row['tussenvoegsel'] : "";
-            $naam = $row['voornaam'] . $tv . " " . $row['achternaam'];
-            $geplaatst = date_format(date_create($row['ad_geplaatst']), "d-m-Y H:i:s");
-            $ad_tekst = fetch_verhaal($row['ad_id'], "advertentie", "advertenties");
+                if ($profiel == 0) {
+                    if ($row['gebruikersnaam'] != $gebruikersnaam) {
 ?>
-            <table id="advertentietabel">
-                <tr id="btblrij1">
-                    <td class="btblcel1" id="auteurnaam" <?php echo $row['gebr_id']; ?> width="25%">
-                        <?php echo $naam ?>
-                    </td>
-                    <td class="btblrij1" width="75%">
-                        <?php echo $row['ad_naam'] ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="btblcelx">
-                        <i>rubriek:</i> <?php $row['rubr_id'] ?>
-                    </td>
-                    <td id="btblcelb">
-                        <?php echo $ad_tekst ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="btblrijz" colspan="2">
-                        <i>geplaatst: <?php $geplaatst ?></i>
-                    </td>
-                </tr>
+                        bedrag:&nbsp;&nbsp;&nbsp;
+                        <input type="text" id="bieding" placeholder="$ 0,00"></td><td>
+                        <button id="biedknop" onclick="bieden(<?php echo $gebruikerid . ', ' . $row['ad_id'] ?>)">bieden</button>
 <?php
-                if ($row['gebruikersnaam'] == $gebruikersnaam) {
+                    }
+                } else {
 ?>
-                <tr>
-                    <form action="setup.php" method="post">
-                        <td>
-                            <input type="submit" class = "biedknoppen"
-                                   name="bieden<?php echo $row['ad_id'] ?>" value="bieden">
-                        </td>
-                    </form>
-                </tr>
+                    <button id="verwijder_ad" onclick="verwijder_ad(<?php echo $row['ad_id'] ?>)">X</button>
 <?php
                 }
 ?>
-            </table>
-<?php
-        }
-?>
-        </div>
+                </td>
+            </tr>
+        </table>
+    <?php
+    }
+    ?>
     </div>

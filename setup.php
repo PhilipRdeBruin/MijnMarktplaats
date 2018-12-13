@@ -39,12 +39,42 @@
         $_SESSION['advertentie'] = $_POST['advertentie'];
         $_SESSION['ad_images'] = $_POST['ad_images'];
 
-//        $rubrid = $_SESSION['rubriekid'];
-//        $vanaf = $_SESSION['prijs_vanaf'];
-//        echo "rubriek_id = $rubrid<br/>";
-//        echo "prijs_vanaf = $vanaf";
-//        die();
-
         header ("Location: http://localhost/mijnprojecten/mijnmarktplaats/plaatsen.php");
+    }
+
+    if (isget('mijnprofiel')) {
+        $_SESSION['mijnprofiel'] = $_GET['mijnprofiel'];
+        header ("Location: http://localhost/mijnprojecten/mijnmarktplaats/index.php");
+    }
+
+    if (isget('verwijder_ad') != "") {
+        $id = $_GET['verwijder_ad'];
+        $ad_naam = select_ad_naam($id);
+        $msgstr = schrijfstring("Weet je zeker dat je advertentie || || $ad_naam || || wilt verwijderen? || || (OK = ja, Annuleren = nee)");
+        phpConfirm ("del", $msgstr, $id, "setup.php");
+    }
+
+    if (isget('delantw') != "") {
+        $antw = $_GET['delantw'];
+        $id = $_GET['id'];
+        if ($_GET['delantw'] == "ja") {
+            delete_advertentie($id);
+        }
+        $_SESSION['mijnprofiel'] = issessie('gebruikerid');
+        header ("Location: http://localhost/mijnprojecten/mijnmarktplaats/index.php");
+    }
+
+    if (isget('plaats_bod') != "") {
+        $id = $_GET['plaats_bod'];
+        $koper = $_GET['koper'];
+        $bedrag = $_GET['bod'];
+        $checkbod = check_bod($id, $bedrag);
+        if ($checkbod) {
+            insert_bod($id, $koper, $bedrag);
+            header ("Location: http://localhost/mijnprojecten/mijnmarktplaats/index.php");
+        } else {
+            $msgstr = schrijfstring("Er is reeds hoger geboden. || || Jouw bod wordt daarom niet geaccepteerd.");
+            phpAlertPlus($msgstr, "index.php");
+        }
     }
 ?>

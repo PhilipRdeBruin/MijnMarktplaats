@@ -1,18 +1,52 @@
 
 <?php
 
-    function fetch_advertenties() {
+    function delete_advertentie($ix) {
+        $conn = dbconnect("sqli");
+        $sql = "DELETE FROM advertenties WHERE ad_id = $ix;";
+        $conn->query($sql);
+        dbdisconnect("sqli", $conn);
+    }
+
+    function fetch_advertenties($filterstring) {
         $conn = dbconnect("sqli");
         $sql = "SELECT * FROM advertenties a
             INNER JOIN gebruikers g
             ON a.verkoper_id = g.gebr_id
             INNER JOIN rubrieken r
             ON a.rubriek_id = r.rubr_id
+            $filterstring
             ORDER BY a.ad_id DESC;";
         $result = $conn->query($sql);
         dbdisconnect("sqli", $conn);
 
         return $result;
+    }
+
+    function fetch_biedingen($ad_id) {
+        $conn = dbconnect("sqli");
+        $sql = "SELECT b.bod_id, b.bod, g.gebruikersnaam FROM biedingen b
+            INNER JOIN gebruikers g
+            ON b.koper_id = g.gebr_id
+            WHERE advertentie_id = $ad_id
+            ORDER BY bod_geplaatst DESC;";
+        $result = $conn->query($sql);
+        dbdisconnect("sqli", $conn);
+
+        return $result;
+    }
+
+    function get_max_bod($id) {
+        $conn = dbconnect("sqli");
+        $sql = "SELECT bod FROM biedingen
+                ORDER BY bod DESC;";
+        $result = $conn->query($sql);
+        if ($result && $row = $result->fetch_assoc()) {
+            $max_bod = $row['bod'];
+        }
+        dbdisconnect("sqli", $conn);
+
+        return $max_bod;
     }
 
     function get_nieuw_advertentie_id ($advertentie_naam) {
@@ -31,6 +65,15 @@
         $conn = dbconnect ("sqli");
 
         return $gebruikerid;
+    }
+
+    function insert_bod($id, $koper, $bedrag) {
+        $tijd = date("Y-m-d H:i:s", time());
+        $conn = dbconnect("sqli");
+        $sql = "INSERT INTO biedingen (advertentie_id, koper_id, bod, bod_geplaatst)
+                VALUES ('$id', '$koper', '$bedrag', '$tijd');";
+        $conn->query($sql);
+        dbdisconnect("sqli", $conn);
     }
 
     function insert_gebruikers($kolommen, $waarden) {
@@ -68,9 +111,22 @@
         dbdisconnect ("sqli", $conn);
     }
 
+    function select_ad_naam($ix) {
+        $conn = dbconnect("sqli");
+        $sql = "SELECT ad_naam FROM advertenties WHERE ad_id = $ix;";
+        $result = $conn->query($sql);
+        if ($result && $row = $result->fetch_assoc()) {
+            $ad_naam = $row['ad_naam'];
+        }
+        dbdisconnect("sqli", $conn);
+
+        return $ad_naam;
+    }
+
     function select_gebruikerid($gebr) {
+        $gebr_id = "";
         $conn = dbconnect ("sqli");
-        $sql = "SELECT gebr_id FROM gebruikers WHERE gebr_naam = '$gebr';";
+        $sql = "SELECT gebr_id FROM gebruikers WHERE gebruikersnaam = '$gebr';";
         $result = $conn->query($sql);
         if ($result && $row = $result->fetch_assoc()) {
             $gebr_id = $row['gebr_id'];
@@ -83,10 +139,10 @@
     function select_gebruikers($gebr) {
         $gebr_naam = "";
         $conn = dbconnect("sqli");
-        $sql = "SELECT gebr_naam FROM gebruikers WHERE gebr_naam = '$gebr';";
+        $sql = "SELECT gebruikersnaam FROM gebruikers WHERE gebruikersnaam = '$gebr';";
         $result = $conn->query($sql);
         if ($result && $row = $result->fetch_assoc()) {
-            $gebr_naam = $row['gebr_naam'];
+            $gebr_naam = $row['gebruikersnaam'];
         }
         dbdisconnect("sqli", $conn);
 

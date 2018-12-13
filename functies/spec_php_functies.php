@@ -1,6 +1,13 @@
 
 <?php
 
+    function check_bod($id, $prijs) {
+        $max_bod = get_max_bod($id);
+        $checkbod = ($prijs > $max_bod) ? true : false;
+
+        return $checkbod;
+    }
+
     function registreer_nieuwe_gebruiker() {
         $regvelden = array('gebruikersnaam', 'voornaam',
                            'initialen', 'tussenvoegsel', 'achternaam',
@@ -25,6 +32,20 @@
 
         $_SESSION['gebruikerid'] = select_gebruikerid($_SESSION['gebruikersnaam']);
     }
+
+    function schrijf_biedingen($ad_id) {
+        $result = fetch_biedingen($ad_id);
+
+        foreach ($result as $row) {
+            $koper = $row['gebruikersnaam'];
+            $prijs = $row['bod'];
+            echo "<tr>";
+            echo "<td>$koper</td>";
+            echo "<td>$  $prijs</td>";
+            echo "</tr>";
+        }
+    }
+
 
     function unset_gebruiker_sessievariabelen() {
         $regvelden = array('registerknop', 'aanmaken_acct',

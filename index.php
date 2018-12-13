@@ -13,7 +13,7 @@
 			$site = "index";
 			include 'hulpbestanden/sessionvar.php';
 			include 'includes/algemeen/nav.php';
-			include 'includes/index/schrijf_advertenties.php';
+			include 'includes/index/toon_advertenties.php';
 			include 'includes/algemeen/aside.php';
 		?>
 		</section>

@@ -1,0 +1,126 @@
+
+/* Style the overzichtstabel */
+
+.overzicht {
+	margin		: auto;
+	width		: 90%;
+	max-height	: 200px;
+	overflow	: scroll;
+}
+
+.overzichtheader {
+	margin		: auto;
+	width		: 90%;
+	margin-top	: 25px;
+}
+
+#overzichtstabel, #overzichtstabelheader {
+	min-width	: 100%;
+	font-size	: 14px;
+}
+
+#overzichtstabelheader th {
+	text-align	: left;
+	background	: #bbb;
+}
+
+#regel1 {
+	background	: #e8e8e8;
+}
+
+#regel2 {
+	background	: #cacaca;
+}
+
+
+/* Style the berichtentabel */
+
+.advertenties {
+	margin		: auto;
+	width		: 100%;
+	padding    	: 5px 20px 5px 20px;
+	font-size	: 14px
+}
+
+#advertentietabel, #biedingentabel {
+	margin-top		: 30px;
+	vertical-align	: text-top;
+}
+
+#advertentietabel {
+    float       : left;
+    width       : 60%;
+}
+
+#bieding {
+	width		: 60px;
+}
+
+#biedingentabel {
+    float       : right;
+    width       : 35%;
+}
+
+#bodplaatsen {
+    clear       : left;
+}
+
+.biedknoppen {
+	min-width		: 100px;
+	background		: #abf;
+	font-size		: 14px;
+	background		: -moz-linear-gradient(#eee, #69c);
+	background		: -webkit-linear-gradient(#eee, #69c);
+	background		: -ms-linear-gradient(#eee, #69c);
+	background		: -o-linear-gradient(#eee, #69c);
+	border			: 1px #69c solid;
+	border-radius	: 5px;
+}
+
+.berknoppen:hover, .delete:hover {
+/*	text-decoration	:  strong;  */
+	background		: #ffdd3b;
+	background		: -moz-linear-gradient(#ffbe59, #ffecc6);
+	background		: -webkit-linear-gradient(#ffbe59, #ffecc6);
+	background		: -ms-linear-gradient(#ffbe59, #ffecc6);
+	background		: -o-linear-gradient(#ffbe59, #ffecc6);
+	border			: 1px #ffbe59 solid;
+}
+
+#btblcelb {
+	padding			: 5px 20px 10px 10px;
+	text-align		: justify;
+	border-right	: 1px #ccc solid;
+}
+
+#btblcelx {
+	padding			: 5px 20px 10px 10px;
+	background		: #ddd;
+	vertical-align	: top;
+	border-bottom	: 1px #ddd solid;
+}
+
+#btblrij1 {
+	background	: #aaa;
+}
+
+.btblrij1, .btblcel1 {
+	padding		: 3px 20px 3px 10px;
+}
+
+.btblcel1:hover {
+	color		: blue;
+	background		: -moz-linear-gradient(#ffbe59, #ffecc6);
+	background		: -webkit-linear-gradient(#ffbe59, #ffecc6);
+	background		: -ms-linear-gradient(#ffbe59, #ffecc6);
+	background		: -o-linear-gradient(#ffbe59, #ffecc6);
+/*	border			: 1px #ffbe59 solid; */
+	cursor		: pointer;
+}
+
+#btblrijz {
+	background		: #ddd;
+	text-align		: center;
+	border-top: 	: 1px #ddd solid;
+	border-bottom	: 1px #aaa solid;
+}
