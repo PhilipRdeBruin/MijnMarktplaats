@@ -26,6 +26,7 @@
 	case 'plaatsen':
 		$advertentie_header = "Advertentie plaatsen";
 		$advertentieknop = "Plaats advertentie";
+		$advertentie_id = issessie('advertentie_id');
 		$advertentie_naam = issessie('ad_naam');
 		$advertentie = issessie('advertentie');
 		$rubriek = issessie('rubriekid');

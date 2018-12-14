@@ -2,9 +2,15 @@
 <?php
     if (issessie('advertentieknop') != "") {
         if (issessie('rubriekid') != "" && issessie('rubriekid') != "leeg" && issessie('advertentie') != "") {
-            plaats_advertentie();
-            if ($advertentieknop == "plaats advertentie") { $ad_id = get_nieuw_advertentie_id(); }
-            schrijf_advertentiebestand();
+            $tijd = date("Y-m-d H:i:s", time());
+            plaats_advertentie($tijd);
+            if ($advertentieknop == "Plaats advertentie") {
+                $ad_id = get_nieuw_advertentie_id($advertentie_naam, $tijd);
+            }
+            $ix = str_pad($ad_id, 4, '0', STR_PAD_LEFT);
+//            phpAlert("ix = $ix");
+//            die();
+            schrijf_advertentiebestand($ix, $gebruikersnaam, $advertentie_naam, $rubriek, $tijd);
             unset_plaats_ad_sessievariabelen();
             header ("Location: http://localhost/mijnprojecten/mijnmarktplaats/index.php");
         } else {

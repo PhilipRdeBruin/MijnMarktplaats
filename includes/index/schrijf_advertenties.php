@@ -12,10 +12,10 @@
 ?>
         <table id="advertentietabel">
             <tr id="btblrij1">
-                <td class="btblcel1" id="auteurnaam" <?php echo $row['gebr_id']; ?> width="25%">
+                <td class="btblcel1" id="auteurnaam" <?php echo $row['gebr_id']; ?> width="30%">
                     <?php echo $naam ?>
                 </td>
-                <td class="btblrij1" width="75%">
+                <td class="btblrij1" width="70%">
                     <?php echo $row['ad_naam'] ?>
                 </td>
             </tr>
@@ -28,7 +28,10 @@
                 </td>
             </tr>
             <tr>
-                <td id="btblrijz" colspan="2">
+                <td id="btblrijz">
+                    postcode: <?php echo $row['postcode'] ?>
+                </td>
+                <td id="btblrijz">
                     <i>geplaatst: <?php echo $geplaatst ?></i>
                 </td>
             </tr>
@@ -40,7 +43,7 @@
                 <td>$  <?php echo $row['artikel_prijs']; ?></td>
             </tr>
             <tr>
-                <td colspan="2">Biedingen:</td>
+                <td colspan="2" id="btblrijy">Biedingen:</td>
             </tr>
 
             <?php schrijf_biedingen($row['ad_id']) ?>

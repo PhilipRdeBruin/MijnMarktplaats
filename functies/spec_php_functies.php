@@ -59,7 +59,7 @@
         }
     }
 
-    function schrijf_advertentiebestand($ix, $gebruikersnaam, $ad_naam, $rubriek, $tijd ) {
+    function schrijf_advertentiebestand($ix, $gebruikersnaam, $ad_naam, $rubriek, $tijd) {
         $filenaam = "bericht_" . $ix . ".txt";
         $inhoud = $tijd . "\n" . $gebruikersnaam . "\n" . $ad_naam . "\n" . $rubriek . "\n" . $advertentie;
         schrijfbestand ("w", $filenaam, $inhoud, "advertenties");
@@ -90,6 +90,26 @@
         }
 
         dbdisconnect ("sqli", $conn);
+    }
+
+    function verwijder_oudebestanden() {
+        $deltijddef = date("Y-m-d H:i:s", time() - 2419200); // 4 weken
+        $deltijd = date("Y-m-d H:i:s", time() - 86400); // 1 dag (voor testen)
+
+        $conn = dbconnect("sqli");
+
+        $sql = "UPDATE advertenties SET ad_status = 'closed'
+                WHERE ad_geplaatst < '$deltijd';";
+        $conn->query($sql);
+
+        $sql = "DELETE FROM advertenties
+                WHERE ad_geplaatst < '$deltijddef';";
+        $conn->query($sql);
+
+        dbdisconnect("sqli", $conn);
+
+//        phpAlert("deltijd = $deltijd");
+//        die();
     }
 
     function zoekgebruiker ($tp, $waarde) {

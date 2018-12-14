@@ -52,13 +52,41 @@
     width       : 60%;
 }
 
+.align_rechts {
+	text-align	: right;
+}
+
 #bieding {
-	width		: 60px;
+	width			: 70px;
+	height			: 25px;
+	color			: #008;
+	text-align		: right;
+	border-radius	: 2px;
 }
 
 #biedingentabel {
     float       : right;
     width       : 35%;
+}
+
+#biedknop {
+	background		: #abf;
+	font-size		: 14px;
+	background		: -moz-linear-gradient(#eee, #999);
+	background		: -webkit-linear-gradient(#eee, #999);
+	background		: -ms-linear-gradient(#eee, #999);
+	background		: -o-linear-gradient(#eee, #999);
+	border			: 1px #999 solid;
+	border-radius	: 5px;
+}
+
+#biedknop:hover {
+	background		: #ffdd3b;
+	background		: -moz-linear-gradient(#ffbe59, #ffecc6);
+	background		: -webkit-linear-gradient(#ffbe59, #ffecc6);
+	background		: -ms-linear-gradient(#ffbe59, #ffecc6);
+	background		: -o-linear-gradient(#ffbe59, #ffecc6);
+	border			: 1px #ffbe59 solid;
 }
 
 #bodplaatsen {
@@ -118,9 +146,12 @@
 	cursor		: pointer;
 }
 
-#btblrijz {
+#btblrijy, #btblrijz {
 	background		: #ddd;
-	text-align		: center;
 	border-top: 	: 1px #ddd solid;
 	border-bottom	: 1px #aaa solid;
+}
+
+#btblrijz {
+	text-align		: center;
 }

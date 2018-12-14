@@ -15,8 +15,11 @@
             ON a.verkoper_id = g.gebr_id
             INNER JOIN rubrieken r
             ON a.rubriek_id = r.rubr_id
+            WHERE ad_status = 'open'
             $filterstring
-            ORDER BY a.ad_id DESC;";
+            ORDER BY ad_id DESC;";
+//        echo "sql = $sql";
+//        die();
         $result = $conn->query($sql);
         dbdisconnect("sqli", $conn);
 
@@ -49,8 +52,10 @@
         return $max_bod;
     }
 
-    function get_nieuw_advertentie_id ($advertentie_naam) {
-        $sql = "SELECT ad_id FROM advertenties WHERE ad_naam = '$advertentie_naam' AND ad_geplaatst = '$tijd';";
+    function get_nieuw_advertentie_id ($advertentie_naam, $tijd) {
+        $conn = dbconnect("sqli");
+        $sql = "SELECT ad_id FROM advertenties
+                WHERE ad_naam = '$advertentie_naam' AND ad_geplaatst = '$tijd';";
         $result = $conn->query($sql);
         if($row = $result->fetch_assoc()) { $ad_id = $row['ad_id']; }
         $conn = dbconnect ("sqli");
@@ -59,7 +64,9 @@
     }
 
     function get_nieuw_gebruikerid ($gebruikersnaam) {
-        $sql = "SELECT gebr_id FROM gebruikers WHERE gebruikersnaam = '$gebruikersnaam';";
+        $conn = dbconnect("sqli");
+        $sql = "SELECT gebr_id FROM gebruikers
+                WHERE gebruikersnaam = '$gebruikersnaam';";
         $result = $conn->query($sql);
         if($row = $result->fetch_assoc()) { $gebruikerid = $row['gebruikerid']; }
         $conn = dbconnect ("sqli");
@@ -83,16 +90,15 @@
         dbdisconnect("sqli", $conn);
     }
 
-    function plaats_advertentie() {
-        $tijd = date("Y-m-d H:i:s", time());
+    function plaats_advertentie($tijd) {
         $conn = dbconnect ("sqli");
         $sql = "INSERT INTO advertenties (
                             ad_naam,
                             ad_omschrijving,
-                            ad_rubr_id,
+                            rubriek_id,
                             artikel_prijs,
                             prijs_vanaf,
-                            ad_verkoper_id,
+                            verkoper_id,
                             ad_geplaatst,
                             ad_laatste_act,
                             ad_status)
@@ -106,7 +112,6 @@
                             '" . $tijd . "',
                             'open'
                 );";
-
         $conn->query($sql);
         dbdisconnect ("sqli", $conn);
     }
