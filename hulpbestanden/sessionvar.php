@@ -24,6 +24,7 @@
 		$loginnaam = ""; $loginmail = "";
 		break;
 	case 'plaatsen':
+		$_SESSION['uploadfoto'] = "";
 		$advertentie_header = "Advertentie plaatsen";
 		$advertentieknop = "Plaats advertentie";
 		$advertentie_id = issessie('advertentie_id');
@@ -32,6 +33,7 @@
 		$rubriek = issessie('rubriekid');
 		$prijs = issessie('art_prijs');
 		$prijs_vanaf = (issessie('prijs_vanaf')) ? "checked" : "";
+		$prijs_vanaf2 = (issessie('prijs_vanaf2')) ? "checked" : "";
 		$ad_images = issessie('ad_images');
 		break;
 	case 'profiel':

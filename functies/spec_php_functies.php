@@ -8,6 +8,29 @@
         return $checkbod;
     }
 
+    function plaats_fotos($id) {
+        $result = fetch_fotos($id);
+        $fotostring = "";
+        foreach ($result as $row) {
+//            $fotonaam = $row['foto_naam'];
+//            phpAlert ("ad_id: $id   foto = $fotonaam");
+//            echo "<script>plaats_foto($id, '$fotonaam')</script>";
+            $fotostring = $fotostring . ";" . $row['foto_naam'];
+        }
+        $fotostring = substr($fotostring, 1);
+        if ($fotostring != "") {
+//            phpAlert ("ad_id: $id   foto = $fotostring");
+            echo "<script>plaats_foto($id, '$fotostring')</script>";
+        }
+    }
+
+    function plaats_nieuwe_fotos() {
+        $arr = explode(";", $_SESSION['uploadfotos']);
+        for ($i = 0; $i < count($arr); $i++) {
+            echo "<img src='$arr[$i]' id='uploadfoto'>";
+        }
+    }
+
     function registreer_nieuwe_gebruiker() {
         $regvelden = array('gebruikersnaam', 'voornaam',
                            'initialen', 'tussenvoegsel', 'achternaam',
@@ -98,9 +121,9 @@
 
         $conn = dbconnect("sqli");
 
-        $sql = "UPDATE advertenties SET ad_status = 'closed'
-                WHERE ad_geplaatst < '$deltijd';";
-        $conn->query($sql);
+//        $sql = "UPDATE advertenties SET ad_status = 'closed'
+//                WHERE ad_geplaatst < '$deltijd';";
+//        $conn->query($sql);
 
         $sql = "DELETE FROM advertenties
                 WHERE ad_geplaatst < '$deltijddef';";

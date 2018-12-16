@@ -39,9 +39,21 @@
         return $result;
     }
 
+    function fetch_fotos($id) {
+        $conn = dbconnect("sqli");
+        $sql = "SELECT foto_naam FROM fotos
+                WHERE advertentie_id = '$id';";
+        $res = $conn->query($sql);
+        $conn = dbconnect ("sqli");
+
+        return $res;
+    }
+
     function get_max_bod($id) {
+        $max_bod = 0;
         $conn = dbconnect("sqli");
         $sql = "SELECT bod FROM biedingen
+                WHERE advertentie_id = $id
                 ORDER BY bod DESC;";
         $result = $conn->query($sql);
         if ($result && $row = $result->fetch_assoc()) {

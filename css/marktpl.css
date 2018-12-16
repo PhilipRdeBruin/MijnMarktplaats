@@ -9,6 +9,36 @@
 	color	: #ccc;
 }
 
+.dgrey {
+	color	: #444;
+}
+
+.hr75grijs {
+	width	: 75%;
+	border	: 1px solid #888;
+}
+
+.px10 {
+	font-size	: 10px;
+}
+
+.px11 {
+	font-size	: 11px;
+}
+
+.px12 {
+	font-size	: 12px;
+}
+
+.px14 {
+	font-size	: 14px;
+}
+
+.voetnoot {
+	margin		: -10px 0 0 0;
+	font-size	: 10px;
+	color		: #888;
+}
 
 /* Style the nav elements */
 

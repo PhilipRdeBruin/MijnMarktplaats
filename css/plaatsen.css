@@ -3,6 +3,27 @@
     float: right;
 }
 
+#advertentieknop, #upload_submit {
+    background		: #abf;
+	font-size		: 14px;
+	background		: -moz-linear-gradient(#eee, #999);
+	background		: -webkit-linear-gradient(#eee, #999);
+	background		: -ms-linear-gradient(#eee, #999);
+	background		: -o-linear-gradient(#eee, #999);
+	border			: 1px #999 solid;
+	border-radius	: 5px;
+    cursor          : pointer;
+}
+
+#advertentieknop:hover, #upload_submit:hover {
+    background		: #ffdd3b;
+	background		: -moz-linear-gradient(#ffbe59, #ffecc6);
+	background		: -webkit-linear-gradient(#ffbe59, #ffecc6);
+	background		: -ms-linear-gradient(#ffbe59, #ffecc6);
+	background		: -o-linear-gradient(#ffbe59, #ffecc6);
+	border			: 1px #ffbe59 solid;
+}
+
 #ad_naam, #rubriek {
     min-width       : 320px;
 }
@@ -11,4 +32,12 @@
     width           : 100px;
     padding-right   : 5px;
     text-align      : right;
+}
+
+#hidden_uploadbestand {
+    display         : none;
+}
+
+#uploadfoto {
+    height          : 90px;
 }

@@ -36,6 +36,7 @@
         $_SESSION['rubriekid'] = $_POST['rubriek'];
         $_SESSION['art_prijs'] = $_POST['art_prijs'];
         $_SESSION['prijs_vanaf'] = (ispost('prijs_vanaf') != "") ? true : false;
+        $_SESSION['prijs_vanaf2'] = (ispost('prijs_vanaf2') != "") ? true : false;
         $_SESSION['advertentie'] = $_POST['advertentie'];
         $_SESSION['ad_images'] = $_POST['ad_images'];
 
@@ -68,6 +69,8 @@
         $id = $_GET['plaats_bod'];
         $koper = $_GET['koper'];
         $bedrag = $_GET['bod'];
+//        echo "bedrag = $bedrag";
+//        die();
         $checkbod = check_bod($id, $bedrag);
         if ($checkbod) {
             insert_bod($id, $koper, $bedrag);

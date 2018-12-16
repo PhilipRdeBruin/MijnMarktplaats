@@ -35,11 +35,22 @@
 
 /* Style the berichtentabel */
 
+#ad_foto {
+	margin-top	: 0px;
+	padding		: 0px 10px 5px 10px;
+	float		: left;
+	height		: 120px;
+	width		: auto;
+}
+
 .advertenties {
 	margin		: auto;
-	width		: 100%;
 	padding    	: 5px 20px 5px 20px;
 	font-size	: 14px
+}
+
+#advertentieplustabel {
+	width			: 100%;
 }
 
 #advertentietabel, #biedingentabel {
@@ -49,14 +60,13 @@
 
 #advertentietabel {
     float       : left;
-    width       : 60%;
 }
 
 .align_rechts {
 	text-align	: right;
 }
 
-#bieding {
+.biedingen {
 	width			: 70px;
 	height			: 25px;
 	color			: #008;
@@ -66,7 +76,7 @@
 
 #biedingentabel {
     float       : right;
-    width       : 35%;
+    width       : 100%;
 }
 
 #biedknop {
@@ -78,6 +88,7 @@
 	background		: -o-linear-gradient(#eee, #999);
 	border			: 1px #999 solid;
 	border-radius	: 5px;
+	cursor          : pointer;
 }
 
 #biedknop:hover {
@@ -91,28 +102,6 @@
 
 #bodplaatsen {
     clear       : left;
-}
-
-.biedknoppen {
-	min-width		: 100px;
-	background		: #abf;
-	font-size		: 14px;
-	background		: -moz-linear-gradient(#eee, #69c);
-	background		: -webkit-linear-gradient(#eee, #69c);
-	background		: -ms-linear-gradient(#eee, #69c);
-	background		: -o-linear-gradient(#eee, #69c);
-	border			: 1px #69c solid;
-	border-radius	: 5px;
-}
-
-.berknoppen:hover, .delete:hover {
-/*	text-decoration	:  strong;  */
-	background		: #ffdd3b;
-	background		: -moz-linear-gradient(#ffbe59, #ffecc6);
-	background		: -webkit-linear-gradient(#ffbe59, #ffecc6);
-	background		: -ms-linear-gradient(#ffbe59, #ffecc6);
-	background		: -o-linear-gradient(#ffbe59, #ffecc6);
-	border			: 1px #ffbe59 solid;
 }
 
 #btblcelb {
@@ -154,4 +143,53 @@
 
 #btblrijz {
 	text-align		: center;
+}
+
+.fotogalerij {
+	clear			: left;
+	display			: block;
+}
+
+#foto_header {
+	padding			: 15px 0px 0px 10px;
+}
+
+#fotos {
+	margin			: 20px auto 10px 10px;
+	width			: 75%;
+	height			: 90px;
+	background		: #888;
+	border			: 1px solid #444;
+}
+
+#tbplusk1 {
+	width			: 65%;
+	vertical-align	: top;
+}
+
+#tbplusk2 {
+	width			: 30%;
+	vertical-align	: top;
+}
+
+#verwijder_ad {
+	font-size		: 14px;
+	color			: #fbb;
+	background		: -moz-linear-gradient(#f44, #900);
+	background		: -webkit-linear-gradient(#f44, #900);
+	background		: -ms-linear-gradient(#f44, #900);
+	background		: -o-linear-gradient(#f44, #900);
+	border			: 1px #c96 solid;
+	border-radius	: 5px;
+	cursor			: pointer;
+}
+
+#verwijder_ad:hover {
+	font-weight		: bold;
+	color			: #000;
+	background		: -moz-linear-gradient(#900, #f44);
+	background		: -webkit-linear-gradient(#900, #f44);
+	background		: -ms-linear-gradient(#900, #f44);
+	background		: -o-linear-gradient(#900, #f44);
+	border			: 1px #c96 solid;
 }
